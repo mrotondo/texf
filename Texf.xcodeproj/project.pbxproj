@@ -22,6 +22,7 @@
 		D581AC1717EA984C00CEE6AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D581ABF617EA984C00CEE6AA /* UIKit.framework */; };
 		D581AC1F17EA984C00CEE6AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D581AC1D17EA984C00CEE6AA /* InfoPlist.strings */; };
 		D581AC2117EA984C00CEE6AA /* TexfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D581AC2017EA984C00CEE6AA /* TexfTests.m */; };
+		D581AC2B17EABD9700CEE6AA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D581AC2A17EABD9700CEE6AA /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		D581AC1C17EA984C00CEE6AA /* TexfTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TexfTests-Info.plist"; sourceTree = "<group>"; };
 		D581AC1E17EA984C00CEE6AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D581AC2017EA984C00CEE6AA /* TexfTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TexfTests.m; sourceTree = "<group>"; };
+		D581AC2A17EABD9700CEE6AA /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D581AC2B17EABD9700CEE6AA /* CoreMotion.framework in Frameworks */,
 				D581ABF517EA984C00CEE6AA /* CoreGraphics.framework in Frameworks */,
 				D581ABF717EA984C00CEE6AA /* UIKit.framework in Frameworks */,
 				D581ABF317EA984C00CEE6AA /* Foundation.framework in Frameworks */,
@@ -103,6 +106,7 @@
 		D581ABF117EA984C00CEE6AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D581AC2A17EABD9700CEE6AA /* CoreMotion.framework */,
 				D581ABF217EA984C00CEE6AA /* Foundation.framework */,
 				D581ABF417EA984C00CEE6AA /* CoreGraphics.framework */,
 				D581ABF617EA984C00CEE6AA /* UIKit.framework */,

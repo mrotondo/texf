@@ -7,9 +7,11 @@
 //
 
 #import "TXViewController.h"
+#import <CoreMotion/CoreMotion.h>
 
 @interface TXViewController () <UICollisionBehaviorDelegate, UIDynamicAnimatorDelegate>
 
+@property (nonatomic, strong) CMMotionManager *motionManager;
 @property (nonatomic, strong) NSTextContainer *textContainer;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, strong) UIDynamicAnimator *dynamicAnimator;
@@ -26,7 +28,7 @@
     
 
     NSString *string = @"";
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < 2500; i++)
     {
 //        int wordLength = 4 + arc4random() % 7;
         int wordLength = 1;
@@ -38,7 +40,7 @@
         }
         string = [string stringByAppendingString:@" "];
     }
-    UIFont *font = [UIFont systemFontOfSize:12];
+    UIFont *font = [UIFont systemFontOfSize:24];
     UIColor *textColor = [UIColor colorWithRed:255.0/255 green:251.0/255 blue:193.0/255 alpha:1];
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:string
                                                                            attributes:@{NSFontAttributeName: font,
@@ -58,7 +60,7 @@
     self.dynamicAnimator.delegate = self;
     
     self.dynamicViews = [NSMutableArray array];
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 3; i++)
     {
         UIView *dynamicView = [[UIView alloc] initWithFrame:generateRectInBounds(self.view.bounds)];
 //        dynamicView.backgroundColor = [UIColor grayColor];
@@ -70,6 +72,15 @@
     self.gravityBehavior = [[UIGravityBehavior alloc] initWithItems:self.dynamicViews];
     self.gravityBehavior.magnitude = 0.1;
     [self.dynamicAnimator addBehavior:self.gravityBehavior];
+    
+    self.motionManager = [[CMMotionManager alloc] init];
+    __block TXViewController *blockSelf = self;
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [self.motionManager startDeviceMotionUpdatesToQueue:queue withHandler:^(CMDeviceMotion *motion, NSError *error) {
+//        NSLog(@"%@", NSStringFromCGPoint(CGPointMake(motion.gravity.x, motion.gravity.y)));
+        CGVector gravityDirection = CGVectorMake(motion.gravity.x, -motion.gravity.y);
+        blockSelf.gravityBehavior.gravityDirection = gravityDirection;
+    }];
     
     UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] initWithItems:self.dynamicViews];
     collisionBehavior.collisionMode = UICollisionBehaviorModeEverything;
@@ -97,7 +108,7 @@ static CGRect generateRectInBounds(CGRect bounds)
 
 static CGSize generateSizeForBounds(CGRect bounds)
 {
-    CGSize size = CGSizeMake(30 + 80 * (arc4random() / (float)0x100000000), 30 + 80 * (arc4random() / (float)0x100000000));
+    CGSize size = CGSizeMake(10 + 200 * (arc4random() / (float)0x100000000), 200 + 400 * (arc4random() / (float)0x100000000));
     return size;
 }
 
